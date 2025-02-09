@@ -81,12 +81,14 @@ docker logs -f spring-boot-app
 
 Expected logs:
 
-- Polling messages from SQS.
-- No messages found in SQS queue.
-- Publishing message to SNS.
-- Message published successfully.
-- Received message.
-- Message deleted from queue.
+```sh
+Polling messages from SQS.
+No messages found in SQS queue.
+Publishing message to SNS.
+Message published successfully.
+Received message.
+Message deleted from queue.
+```
 
 Monitor the LocalStack logs:
 
@@ -96,8 +98,10 @@ docker logs -f localstack
 
 Expected logs:
 
-- Waiting for LocalStack to start SNS and SQS.
-- Creating SNS topic and SQS queue.
-- Subscribing SQS to SNS.
-- Configuration completed successfully.
-- Ready.
+```sh
+Waiting for LocalStack to start SNS and SQS. 
+Creating SNS topic and SQS queue. 
+Subscribing SQS to SNS. 
+Configuration completed successfully.
+Ready.
+```
