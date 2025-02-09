@@ -2,7 +2,7 @@
 
 This repository contains a **Spring Boot API** running inside a **Docker container**, integrated with **AWS SNS and SQS** using **LocalStack**.
 
-This project aims to deploy a Java 17 + Spring Boot 3 container that functions as a REST API to receive messages and publish them to an SNS topic. Additionally, A separate LocalStack container will run to simulate AWS SNS and SQS services, automatically creating the SNS topic, the SQS queue, and subscribing the queue to the topic to receive messages. Finally, within the application container, a consumer service will continuously poll the SQS queue every 10 seconds, retrieving and processing any messages that have been published. This setup provides a fully containerized environment for testing event-driven communication with AWS SNS and SQS.
+This project aims to deploy a **Java 17** + **Spring Boot 3** container that functions as a **REST API** to **receive messages** and **publish** them to an **SNS topic**. Additionally, A separate LocalStack container will run to **simulate AWS SNS and SQS services**, automatically creating the SNS topic, the SQS queue, and subscribing the queue to the topic to receive messages. Finally, within the application container, a consumer service will continuously **poll the SQS queue every 10 seconds**, retrieving and processing any messages that have been published. This setup provides a fully containerized environment for testing event-driven communication with AWS SNS and SQS.
 
 ## 📦 Features
 - Built with Java 17 and Spring Boot 3.
