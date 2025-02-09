@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+
+  localstack:
+    build:
+      context: .
+      dockerfile: Dockerfile.localstack
+    container_name: localstack
+    environment:
+      - SERVICES=sns,sqs
+      - DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./create-consumer-producer.sh:/etc/localstack/init/ready.d/create-consumer-producer.sh"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-boot-app
+    depends_on:
+      localstack:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
